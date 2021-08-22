@@ -1,0 +1,30 @@
+.cart-item{
+    display: flex;
+}
+
+.cart-item img{
+    width: 5rem;
+    height: 5rem;
+    object-fit: cover;
+}
+
+.nav{
+    background: #2680c0;
+    background: var(--clr-primary);
+    padding: 1.25rem 2rem;
+}
+
+.nav-center{
+    max-width: 50rem;
+    max-width: var(--fixed-width);
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-container{
+    display: block;
+    position: relative;
+}
