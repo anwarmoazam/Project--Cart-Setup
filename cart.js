@@ -1,4 +1,6 @@
 let list = document.querySelector(".item-container");
+let grossAmount = document.querySelectorAll(".cart-total");
+// let qty = document.querySelector(".amount");
 // let initialCount = 1;
 
 const cartItems = [
@@ -11,7 +13,7 @@ const cartItems = [
 	},
     {
 		id: 2,
-		name: 'google pixel',
+		name: 'Google pixel',
         price: 499.99,
 		img: './images/item-2.jpeg',
 		qty: 1
@@ -32,7 +34,6 @@ const cartItems = [
 	}
 ];
 
-
 function renderItem(item){
     return`<div><article class="cart-item"><img src="${item.img}" alt="Samsung Galaxy S8"/><div><h4>${item.name}</h4><h4 class="item-price">${item.price}</h4><button class="remove-btn">remove</button></div><div><button onclick="increaseItem(this)" class="amount-btn">+</button><p class="amount">${item.qty}</p><button onclick="decreaseItem(this)" class="amount-btn">-</button></div></article></div>`;
 }
@@ -41,17 +42,40 @@ function renderItem(item){
 	let products = '';
 	for (let item of cartItems) {
 		products += renderItem(item);
-		// categories.push(item.category);
 	}
 	list.innerHTML = products;
 })();
 
 function increaseItem(e){
 	let qty = document.querySelector(".amount");
-	qty.innerHTML++
-	console.log(qty.innerHTML);
+	let amount = document.querySelectorAll(".item-price");
+	for(let item of cartItems){
+		item.qty++;
+		cartItems.qty = item.qty;
+		qty.innerHTML = cartItems.qty;
+	}
+	showTotal();
 }
 
 function decreaseItem(e){
-	console.log("Decrease")
+	let qty = document.querySelector(".amount");
+	for(let item of cartItems){
+		if(item.qty>1){
+			item.qty--;
+			cartItems.qty = item.qty;
+			qty.innerHTML = cartItems.qty;
+		} else{
+			let last = document.querySelector(".cart-item")
+			last.parentNode.innerHTML = '';
+		}
+	}
+}
+
+function showTotal(){
+	let sum = 0;
+	for(let item of cartItems){
+		sum += cartItems.qty * cartItems.price;
+		console.log(sum);
+	}
+	grossAmount[0].children[0].childNodes[1].innerHTML = sum;
 }
