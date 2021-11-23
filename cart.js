@@ -31,7 +31,7 @@ let cartItems = [
 		price: 599.99,
 		img: './images/item-4.jpeg',
 		qty: 1,
-	},
+	}
 ];
 
 function renderItem(item) {
@@ -60,7 +60,7 @@ function render() {
 
 function increaseItem(id) {
 	for (let item of cartItems) {
-		if (item.id === id) {
+		if (item.id === id && item.qty<5) {
 			item.qty++;
 			break;
 		}
